@@ -12,14 +12,14 @@ No accounts, no internet, no installs beyond Python.
 
 ## Quick start
 
+Clone and run in one line:
+
 ```bash
-git clone https://github.com/Srivar-Burla/splendor.git
-cd splendor
-python3 server.py
+git clone https://github.com/Srivar-Burla/splendor.git && cd splendor && python3 server.py
 ```
 
-Then open the printed `http://<lan-ip>:8000` link. On Windows, double-click
-`start.bat` instead.
+Then open the printed `http://<lan-ip>:8000` link. On Windows, use
+`start.bat` instead of `python3 server.py`.
 
 ---
 
