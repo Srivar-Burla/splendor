@@ -13,7 +13,7 @@ No accounts, no internet, no installs beyond Python.
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/splendor.git
+git clone https://github.com/Srivar-Burla/splendor.git
 cd splendor
 python3 server.py
 ```
