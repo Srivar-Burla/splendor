@@ -1,0 +1,226 @@
+/* ---------------------------------------------------------------- modals */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(5, 12, 15, 0.72);
+  backdrop-filter: blur(4px);
+  overscroll-behavior: contain;
+}
+.modal {
+  width: min(480px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 22px;
+  border-radius: var(--radius-paper);
+  animation: modal-in 0.18s ease both;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.modal h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1a14;
+}
+.modal-sub { margin: 4px 0 16px; color: #6b5a3c; font-size: 13px; }
+.modal-card-wrap { display: flex; justify-content: center; margin: 8px 0 4px; padding: 12px 0; }
+.modal-card-wrap .card { transform: scale(1.15); }
+.pay-preview {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(125, 95, 44, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.28);
+}
+.pay-preview h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-3);
+}
+.pay-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.pay-note { margin: 6px 0 0; color: #6b5a3c; font-size: 11px; }
+.modal-actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 18px; }
+.modal-actions .btn { flex: 1; min-width: 120px; }
+
+.gem-grid { display: flex; flex-direction: column; gap: 8px; }
+.gem-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border: 1px solid rgba(125, 95, 44, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.28);
+}
+.gem-choice.selected {
+  border-color: var(--brass);
+  background: rgba(216, 180, 110, 0.18);
+}
+.gem-choice .gem-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.gem-choice .gc-name { font-weight: 700; font-size: 14px; color: #1d1a14; }
+.gem-choice .gc-count { margin-left: auto; color: #6b5a3c; font-size: 12px; }
+.gem-choice .gc-btn {
+  min-height: 36px;
+  padding: 7px 11px;
+  border-radius: 3px;
+  border: 1px solid rgba(125, 95, 44, 0.4);
+  background: rgba(255, 255, 255, 0.35);
+  color: #3a2f1c;
+  font-size: 12px;
+  font-weight: 700;
+}
+.gem-choice .gc-btn.on {
+  background: var(--brass);
+  border-color: var(--brass-3);
+  color: #241a08;
+}
+.noble-choice { flex: 1; }
+.noble-choice .noble { width: 100%; min-height: 0; }
+
+@media (max-width: 480px) {
+  .gem-choice { flex-wrap: wrap; }
+  .gem-choice .gc-count { margin-left: auto; }
+  .gem-choice .gc-btn { flex: 1; }
+}
+
+.modal-backdrop.gem-backdrop {
+  background: rgba(5, 12, 15, 0.28);
+  backdrop-filter: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 18px;
+}
+.gem-modal {
+  width: min(420px, 100%);
+  max-height: 82vh;
+}
+@media (max-width: 620px) {
+  .modal-backdrop.gem-backdrop {
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+  .gem-modal {
+    width: 100%;
+    max-height: 78vh;
+    border-radius: 18px 18px 0 0;
+    border-bottom: 0;
+  }
+}
+
+/* ------------------------------------------------------------- game over */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(5, 12, 15, 0.8);
+  backdrop-filter: blur(4px);
+  overscroll-behavior: contain;
+}
+.overlay-card {
+  width: min(540px, 100%);
+  padding: 30px 26px 24px;
+  border-radius: var(--radius-paper);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.overlay-card .seal { margin-top: -58px; margin-bottom: 6px; }
+.overlay-card h2 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  color: #1d1a14;
+}
+.overlay-card .winner {
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--brass-3);
+}
+.score-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+.score-table th,
+.score-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(125, 95, 44, 0.25);
+  font-size: 13px;
+  text-align: left;
+}
+.score-table th {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-3);
+}
+.score-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.score-table tr.win td { color: var(--brass-3); font-weight: 700; }
+
+/* ------------------------------------------------------------ responsive */
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .side { position: static; }
+  .log-panel { max-height: 200px; }
+}
+
+@media (max-width: 620px) {
+  .topbar { padding: 9px 12px; gap: 8px; }
+  .brand-word { font-size: 17px; }
+  .turn-pill { max-width: 58vw; }
+  .layout { padding: 10px; gap: 12px; }
+  .table { padding: 12px; }
+  .opponents { padding: 10px 12px; }
+  .player-chip { min-width: 148px; }
+  .card { width: 76px; height: 106px; }
+  .card-points { font-size: 21px; }
+  .card-bonus { width: 22px; height: 22px; }
+  .cost { width: 18px; height: 18px; font-size: 10px; }
+  .coin { width: 50px; height: 50px; }
+  .bt-count { font-size: 18px; }
+  .noble { width: 84px; height: 124px; }
+  .noble-row { padding-left: 36px; }
+  .row-label { flex-basis: 26px; }
+  .calling-card,
+  .ledger-sheet { padding: 34px 22px 26px; }
+  .join-form { margin-top: 14px; }
+}
+
+/* --------------------------------------------------------------- motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

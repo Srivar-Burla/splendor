@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Splendor — "The Assayer's Table"
+   Ink-blue felt, parchment ledgers, brass rules, wax seals, faceted gems.
+   ========================================================================== */
+
+:root {
+  --ink: #0c1a20;
+  --ink-2: #112630;
+  --ink-3: #18323d;
+  --parchment: #e9dfc7;
+  --parchment-2: #dfd2b4;
+  --parchment-3: #cbb98f;
+  --brass: #b08a4a;
+  --brass-2: #d8b46e;
+  --brass-3: #7d5f2c;
+  --oxblood: #7c2f2f;
+  --verdigris: #3f7f6e;
+  --text: #e9dfc7;
+  --muted: #9aa7a3;
+  --line: rgba(216, 180, 110, 0.22);
+  --line-strong: rgba(216, 180, 110, 0.45);
+  --diamond: #f3efe2;
+  --diamond-2: #cfc6ae;
+  --sapphire: #2e5fa3;
+  --sapphire-2: #1d3f73;
+  --emerald: #2f7d5a;
+  --emerald-2: #1d5540;
+  --ruby: #a83232;
+  --ruby-2: #742020;
+  --onyx: #26262c;
+  --onyx-2: #141418;
+  --gold: #c99a3f;
+  --gold-2: #8f6a22;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-paper: 3px;
+  --radius-card: 6px;
+  --shadow-paper: 0 18px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(1100px 700px at 50% -10%, rgba(63, 127, 110, 0.16), transparent 60%),
+    radial-gradient(900px 600px at 100% 110%, rgba(176, 138, 74, 0.08), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 7px);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(216, 180, 110, 0.2);
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  padding: 10px 14px;
+  border-radius: 3px;
+  background: var(--parchment);
+  color: #1d1a14;
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 12px; }
+
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+button, input, a { touch-action: manipulation; }
+button:disabled { cursor: not-allowed; }
+.btn:disabled,
+.gc-btn:disabled { opacity: 0.42; }
+h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
+
+:focus-visible {
+  outline: 2px solid var(--brass-2);
+  outline-offset: 3px;
+}
+
+.icon { width: 18px; height: 18px; flex: 0 0 auto; }
+
+/* ---------------------------------------------------------------- paper */
+.paper {
+  position: relative;
+  color: #1d1a14;
+  background-color: var(--parchment);
+  background-image:
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.55), transparent 42%),
+    repeating-linear-gradient(0deg, rgba(90, 66, 28, 0.035) 0 1px, transparent 1px 4px);
+  border: 1px solid var(--brass-3);
+  box-shadow: var(--shadow-paper);
+}
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(125, 95, 44, 0.32);
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------- seal */
+.seal {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  position: relative;
+  color: #f3e6c8;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: radial-gradient(circle at 35% 30%, #b04a4a, #7c2f2f 60%, #4e1b1b);
+  box-shadow:
+    0 0 0 3px rgba(176, 138, 74, 0.55),
+    0 0 0 5px rgba(125, 95, 44, 0.25),
+    0 6px 14px rgba(0, 0, 0, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+}
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  border: 1px dashed rgba(243, 230, 200, 0.45);
+}
+.seal span { transform: translateY(-1px); }
+
+/* --------------------------------------------------------------- buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 4px;
+  border: 1px solid var(--brass-3);
+  background: linear-gradient(180deg, var(--brass-2), var(--brass));
+  color: #241a08;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+.btn.ghost {
+  background: transparent;
+  color: inherit;
+  border-color: rgba(125, 95, 44, 0.55);
+  box-shadow: none;
+}
+.btn.ghost:hover:not(:disabled) { background: rgba(125, 95, 44, 0.1); }
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(125, 95, 44, 0.4);
+  color: #3a2f1c;
+  transition: background-color 0.12s ease;
+}
+.icon-btn:hover { background: rgba(125, 95, 44, 0.12); }
+
+/* ---------------------------------------------------------------- toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  transform: translate(-50%, 20px);
+  z-index: 100;
+  max-width: min(90vw, 420px);
+  padding: 11px 18px;
+  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  background: #1b303a;
+  color: var(--parchment);
+  font-size: 13px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ----------------------------------------------------------- reconnect */
+.reconnect-bar {
+  display: none;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 90;
+  padding: 5px;
+  background: #5a3a12;
+  color: #ffe0a3;
+  font-size: 12px;
+  text-align: center;
+}
+body.reconnecting .reconnect-bar { display: block; }
+
+/* --------------------------------------------------------------- gems */
+.gem-diamond { --gem: var(--diamond); --gem-2: var(--diamond-2); --gem-ink: #2a2a2a; }
+.gem-sapphire { --gem: var(--sapphire); --gem-2: var(--sapphire-2); --gem-ink: #fff; }
+.gem-emerald { --gem: var(--emerald); --gem-2: var(--emerald-2); --gem-ink: #fff; }
+.gem-ruby { --gem: var(--ruby); --gem-2: var(--ruby-2); --gem-ink: #fff; }
+.gem-onyx { --gem: var(--onyx); --gem-2: var(--onyx-2); --gem-ink: #fff; }
+.gem-gold { --gem: var(--gold); --gem-2: var(--gold-2); --gem-ink: #2a1d05; }
+
+.gem-diamond, .gem-sapphire, .gem-emerald, .gem-ruby, .gem-onyx, .gem-gold {
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.62), transparent 42%),
+    linear-gradient(145deg, var(--gem), var(--gem-2));
+  color: var(--gem-ink);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.28);
+}
+
+.mini-coin {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+}
