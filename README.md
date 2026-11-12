@@ -91,8 +91,9 @@ There is nothing to `pip install` — the server uses only the standard library,
 and the fonts are bundled so it works offline.
 
 The share link is different on each home network. The server prints it on
-startup, and the lobby shows it too. If Windows Firewall prompts, allow Python
-on private networks.
+startup, and the lobby shows it too. The lobby also shows a **QR code** of that
+link, so nearby players can scan it with their phone camera. If Windows Firewall
+prompts, allow Python on private networks.
 
 ---
 
@@ -109,7 +110,8 @@ on private networks.
 ## How the lobby works
 
 1. The first person to open the link becomes the **host**.
-2. Everyone else joins with a name (2–4 players).
+2. Everyone else joins with a name (2–4 players). Nearby players can also scan
+   the **QR code** shown in the lobby instead of typing the link.
 3. The host presses **Start game**.
 4. From that moment the lobby is **locked** — new players are rejected.
 5. If a phone sleeps or drops Wi-Fi, that player can reopen the link and is

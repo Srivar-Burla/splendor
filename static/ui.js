@@ -48,6 +48,7 @@ function render() {
   }
   if (S.data.phase === 'lobby') {
     app.innerHTML = lobbyScreen();
+    renderQRCode();
     return;
   }
   const g = S.data.game;
@@ -127,6 +128,13 @@ function lobbyScreen() {
             ${icon('copy')}<span>Copy</span>
           </button>
         </div>
+        <div class="qr-block">
+          <div class="qr-code" id="qr-code" aria-label="QR code to join the game"></div>
+          <div class="qr-caption">
+            <strong>Scan to join</strong>
+            <span>Point your phone camera at the code.</span>
+          </div>
+        </div>
       </div>
 
       <div class="players-box">
@@ -194,6 +202,30 @@ function lobbyScreen() {
       </div>
     </div>
   </div>`;
+}
+
+function renderQRCode() {
+  const el = document.getElementById('qr-code');
+  if (!el) return;
+  const url = S.config.lanUrl || location.origin;
+  if (typeof qrcode !== 'function') {
+    el.innerHTML = `<span class="qr-fallback">${esc(url)}</span>`;
+    return;
+  }
+  try {
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    el.innerHTML = qr.createSvgTag({
+      cellSize: 4,
+      margin: 2,
+      scalable: true,
+      alt: 'QR code to join Splendor',
+      title: 'Scan to join Splendor',
+    });
+  } catch (err) {
+    el.innerHTML = `<span class="qr-fallback">${esc(url)}</span>`;
+  }
 }
 
 /* ------------------------------------------------------------ game screen */

@@ -143,6 +143,40 @@
 }
 .share-row .btn { flex: 0 0 auto; }
 
+.qr-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(125, 95, 44, 0.35);
+}
+.qr-code {
+  flex: 0 0 auto;
+  width: 132px;
+  height: 132px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--brass-3);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.qr-code svg { display: block; width: 100%; height: 100%; }
+.qr-caption { display: flex; flex-direction: column; gap: 4px; }
+.qr-caption strong {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1a14;
+}
+.qr-caption span { max-width: 28ch; color: #5a4a2e; font-size: 13px; }
+.qr-fallback {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 11px;
+  color: #3a2f1c;
+  word-break: break-all;
+}
+
 .players-box h2 {
   display: flex;
   align-items: baseline;
@@ -209,6 +243,7 @@
 @media (max-width: 480px) {
   .share-row { flex-direction: column; }
   .share-row .btn { width: 100%; }
+  .qr-block { flex-direction: column; align-items: flex-start; }
 }
 
 /* ------------------------------------------------------------ rules panel */
