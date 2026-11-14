@@ -256,6 +256,7 @@ document.addEventListener('click', () => {
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && S.token) {
     refreshState();
+    checkLiveReload();
     if (!S.es || S.es.readyState === EventSource.CLOSED) connect();
   }
 });
@@ -263,3 +264,47 @@ document.addEventListener('visibilitychange', () => {
 setInterval(() => {
   if (!document.hidden && S.token) refreshState();
 }, 30000);
+
+/* ------------------------------------------------------------ live reload */
+const LIVE_FILES = [
+  '/static/index.html',
+  '/static/app.js',
+  '/static/ui.js',
+  '/static/ui-parts.js',
+  '/static/actions.js',
+  '/static/base.css',
+  '/static/screens.css',
+  '/static/game.css',
+  '/static/bank-side.css',
+  '/static/overlays.css',
+];
+
+let liveStamps = null;
+
+async function checkLiveReload() {
+  if (document.hidden) return;
+  if (new URLSearchParams(location.search).get('live') === '0') return;
+  try {
+    const stamps = await Promise.all(LIVE_FILES.map(async (path) => {
+      const controller = new AbortController();
+      try {
+        const res = await fetch(path, { cache: 'no-store', signal: controller.signal });
+        const len = res.headers.get('Content-Length') || '';
+        controller.abort();
+        return len;
+      } catch (err) {
+        return '';
+      }
+    }));
+    const joined = stamps.join('|');
+    if (liveStamps === null) {
+      liveStamps = joined;
+    } else if (liveStamps !== joined) {
+      location.reload();
+    }
+  } catch (err) {
+    /* ignore */
+  }
+}
+
+setInterval(checkLiveReload, 4000);

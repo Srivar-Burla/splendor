@@ -214,6 +214,17 @@ Design guidance lives in `.opencode/skills/`:
 
 ---
 
+## Development
+
+### Live reload
+
+While the server is running, changes to the static UI files are picked up
+automatically. Each client checks the file sizes every few seconds and reloads
+when they change. The game state lives on the server, so a reload rejoins the
+same game. Add `?live=0` to the URL to disable it.
+
+---
+
 ## Project layout
 
 ```
