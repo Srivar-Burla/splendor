@@ -171,6 +171,27 @@ def test_tiebreak_fewest_cards():
     assert g.winner["ids"] == [0]
 
 
+def test_buy_log_mentions_source():
+    g = new_game(2)
+    g.turn = 0
+    p = g.players[0]
+
+    card = CARD_BY_ID[g.board[1][0]]
+    for color, amount in card["cost"].items():
+        p["tokens"][color] = amount
+    g.act(0, {"type": "buy", "card": card["id"]})
+    assert any("from the board" in line for line in g.log)
+
+    g.turn = 0
+    card2 = CARD_BY_ID[g.board[1][0]]
+    g.act(0, {"type": "reserve", "card": card2["id"]})
+    g.turn = 0
+    for color, amount in card2["cost"].items():
+        p["tokens"][color] = amount
+    g.act(0, {"type": "buy", "card": card2["id"]})
+    assert any("reserved" in line for line in g.log)
+
+
 def test_skip_turn():
     g = new_game(2)
     g.turn = 0

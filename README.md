@@ -167,6 +167,8 @@ to pick tokens.
 - **Buying power:** your ledger shows gems + card bonuses per color.
 - **Card rows:** your purchased cards are grouped by bonus color, sorted by
   tier, with counts and point totals.
+- **Daybook detail:** purchases note whether the card came from the board or
+  from your reserve.
 - **Buy preview:** the card dialog shows exactly what you'll spend after bonuses,
   including any gold used to cover the shortfall.
 - **Blind reserve confirmation:** reserving from a deck asks first.

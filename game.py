@@ -224,10 +224,16 @@ class Game:
 
         p["cards"].append(cid)
         p["bonuses"][card["bonus"]] += 1
-        self._log(
-            f"{p['name']} bought a tier-{card['tier']} {card['bonus']} card"
-            f" (+{card['points']} prestige)."
-        )
+        if source == "reserved":
+            self._log(
+                f"{p['name']} bought a reserved tier-{card['tier']} {card['bonus']} card"
+                f" (+{card['points']} prestige)."
+            )
+        else:
+            self._log(
+                f"{p['name']} bought a tier-{card['tier']} {card['bonus']} card"
+                f" from the board (+{card['points']} prestige)."
+            )
 
     def _payment(self, p, cost):
         tokens = {}
