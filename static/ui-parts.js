@@ -101,9 +101,27 @@ function mePanel(g, myTurn, pendingMe) {
         source: 'reserved', mini: true, disabled: !myTurn || pendingMe,
       })).join('')
     : '<span class="empty-note">None</span>';
-  const cards = me.cards.length
-    ? me.cards.map((c) => cardHTML(c, { source: 'owned', mini: true, disabled: true })).join('')
-    : '<span class="empty-note">None yet</span>';
+  const cardStacks = GEMS.map((color) => {
+    const group = me.cards
+      .filter((c) => c.bonus === color)
+      .sort((a, b) => (a.points - b.points) || (a.tier - b.tier));
+    const n = Math.max(group.length, 1);
+    const pts = group.reduce((sum, c) => sum + c.points, 0);
+    const items = group.map((c, i) => `
+      <div class="stack-item" style="--i:${i}">
+        ${cardHTML(c, { source: 'owned', mini: true, disabled: true })}
+      </div>`).join('');
+    return `<div class="card-stack">
+      <div class="stack-visual" style="--n:${n}">
+        ${items || '<div class="stack-empty"></div>'}
+      </div>
+      <div class="stack-meta">
+        <span class="stack-dot gem-${color}"></span>
+        <span class="stack-count">${group.length}</span>
+        <span class="stack-pts">${pts} pts</span>
+      </div>
+    </div>`;
+  }).join('');
 
   return `<div class="me-panel paper">
     <div class="me-head">
@@ -136,7 +154,7 @@ function mePanel(g, myTurn, pendingMe) {
     </div>
     <div class="me-section">
       <h3>Your cards <span class="count">${me.cards.length}</span></h3>
-      <div class="mini-cards">${cards}</div>
+      <div class="card-stacks">${cardStacks}</div>
     </div>
   </div>`;
 }
