@@ -62,14 +62,29 @@ function playerChip(p, g, d) {
   const bonuses = GEMS.filter((c) => p.bonuses[c] > 0)
     .map((c) => `<span class="bonus-dot counted gem-${c}" title="${GEM_LABEL[c]} bonus">${p.bonuses[c]}</span>`)
     .join('');
+  const coinRow = (tokens || gold) ? `${tokens}${gold}` : '<span class="pc-none">none</span>';
+  const power = GEMS.map((c) => {
+    const total = p.tokens[c] + p.bonuses[c];
+    return `<span class="bonus-dot counted gem-${c}" title="${GEM_LABEL[c]}: ${p.tokens[c]} gems + ${p.bonuses[c]} bonuses">${total}</span>`;
+  }).join('');
   return `<div class="player-chip ${active ? 'active' : ''}">
     <div class="pc-top">
       <span class="pc-name">${esc(p.name)}</span>
       ${pub && pub.isHost ? `<span class="pc-host" title="Host">${icon('crown')}</span>` : ''}
       <span class="pc-points">${p.points}</span>
     </div>
-    <div class="pc-row">${tokens}${gold}</div>
-    <div class="pc-row">${bonuses}</div>
+    <div class="pc-power">
+      <span class="pc-label">Buying power</span>
+      <div class="pc-row">${power}</div>
+    </div>
+    <div class="pc-detail">
+      <span class="pc-label">Coins</span>
+      <div class="pc-row">${coinRow}</div>
+    </div>
+    <div class="pc-detail">
+      <span class="pc-label">Bonuses</span>
+      <div class="pc-row">${bonuses || '<span class="pc-none">none</span>'}</div>
+    </div>
     <div class="pc-meta">${p.cardCount} cards &middot; ${p.reservedCount} reserved &middot; ${p.nobles.length} nobles</div>
   </div>`;
 }

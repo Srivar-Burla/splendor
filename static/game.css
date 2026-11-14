@@ -81,7 +81,7 @@
 }
 .player-chip {
   flex: 0 0 auto;
-  min-width: 168px;
+  min-width: 190px;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -112,7 +112,28 @@
   color: var(--brass-2);
   font-variant-numeric: tabular-nums;
 }
+.pc-power {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border: 1px solid rgba(216, 180, 110, 0.35);
+  border-radius: 3px;
+  background: rgba(216, 180, 110, 0.08);
+}
+.pc-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-2);
+}
+.pc-detail { margin-top: 6px; }
+.pc-detail .pc-label { color: var(--muted); }
 .pc-row { display: flex; gap: 4px; margin-top: 7px; flex-wrap: wrap; }
+.pc-power .pc-row,
+.pc-detail .pc-row { margin-top: 0; }
+.pc-none { color: var(--muted); font-size: 11px; }
 .pc-meta { margin-top: 7px; color: var(--muted); font-size: 11px; }
 
 /* --------------------------------------------------------------- layout */

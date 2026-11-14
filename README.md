@@ -168,9 +168,9 @@ to pick tokens.
 - **Buy preview:** the card dialog shows exactly what you'll spend after bonuses,
   including any gold used to cover the shortfall.
 - **Blind reserve confirmation:** reserving from a deck asks first.
-- **Public information:** opponents' tokens, bonuses, prestige, card count, and
-  nobles are visible, as they would be on a physical table. Reserved cards stay
-  hidden.
+- **Public information:** opponents' buying power (gems + bonuses), coins,
+  bonuses, prestige, card count, and nobles are visible, as they would be on a
+  physical table. Reserved cards stay hidden.
 
 ---
 
