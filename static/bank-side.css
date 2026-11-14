@@ -144,50 +144,32 @@
 .me-actions { display: flex; gap: 8px; margin-top: 14px; }
 .me-actions .btn { flex: 1; }
 .mini-cards { display: flex; gap: 6px; flex-wrap: wrap; }
-.card-stacks {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  align-items: end;
+.card-rows { display: flex; flex-direction: column; }
+.card-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(125, 95, 44, 0.18);
 }
-.card-stack {
+.card-row:last-child { border-bottom: 0; }
+.card-row-label {
+  flex: 0 0 42px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
-.stack-visual {
-  position: relative;
-  width: 66px;
-  height: calc(92px + (var(--n, 1) - 1) * 6px);
-}
-.stack-item {
-  position: absolute;
-  top: calc(var(--i) * 6px);
-  left: 0;
-}
-.stack-empty {
-  width: 66px;
-  height: 92px;
-  border: 1px dashed rgba(125, 95, 44, 0.3);
-  border-radius: var(--radius-card);
-  background: rgba(255, 255, 255, 0.15);
-}
-.stack-meta {
+.card-row-dot { width: 16px; height: 16px; border-radius: 50%; }
+.card-row-count { font-size: 11px; font-weight: 800; color: #3a2f1c; }
+.card-row-pts { font-size: 9px; color: #6b5a3c; }
+.card-row-cards {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #3a2f1c;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
 }
-.stack-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-}
-.stack-count { font-weight: 800; }
-.stack-pts { color: #6b5a3c; font-weight: 600; }
 .empty-note { color: #6b5a3c; font-size: 12px; }
 
 .log-panel { max-height: 280px; overflow-y: auto; }

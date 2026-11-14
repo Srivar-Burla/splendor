@@ -165,8 +165,8 @@ to pick tokens.
 - **Background recovery:** when you return to the tab, the board refreshes and
   the live connection reconnects automatically.
 - **Buying power:** your ledger shows gems + card bonuses per color.
-- **Card stacks:** your purchased cards are grouped by bonus color, with counts
-  and point totals.
+- **Card rows:** your purchased cards are grouped by bonus color, sorted by
+  tier, with counts and point totals.
 - **Buy preview:** the card dialog shows exactly what you'll spend after bonuses,
   including any gold used to cover the shortfall.
 - **Blind reserve confirmation:** reserving from a deck asks first.
